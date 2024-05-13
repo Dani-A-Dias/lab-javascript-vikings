@@ -68,10 +68,42 @@ class War {
 
     }
     vikingAttack(){
+        const randomSaxonIndex = Math.floor(Math.random() * this.saxonArmy.length);
+        const randomSaxon = this.saxonArmy[randomSaxonIndex];
+
+        const randomVikingIndex = Math.floor(Math.random() * this.vikingArmy.length);
+        const randomViking = this.vikingArmy[randomVikingIndex];
+
+        const damage = randomViking.strength;
+        randomSaxon.receiveDamage(damage);
+
+        if (randomSaxon.health <= 0) {
+            this.saxonArmy.splice(randomSaxonIndex, 1);
+            return "A Saxon has died in combat";
+        } else {
+            return `A Saxon has received ${damage} points of damage`;
+        }
 
     }
     saxonAttack(){
 
+        const randomSaxonIndex = Math.floor(Math.random() * this.saxonArmy.length);
+        const randomSaxon = this.saxonArmy[randomSaxonIndex];
+
+        const randomVikingIndex = Math.floor(Math.random() * this.vikingArmy.length);
+        const randomViking = this.vikingArmy[randomVikingIndex];
+
+        const damageDealt = randomSaxon.strength;
+        randomViking.receiveDamage(damageDealt);
+
+        if (randomViking.health <= 0) {
+            this.vikingArmy.splice(randomVikingIndex, 1);
+            return "A viking has died in combat";
+        } else {
+            return `A Viking has received ${damageDealt} points of damage`;
+        }
+
+        
     }
     showStatus() {
         if (this.saxonArmy.length === 0) {
